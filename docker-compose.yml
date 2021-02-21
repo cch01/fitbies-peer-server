@@ -1,0 +1,19 @@
+version: '3.8'
+networks:
+  backend-servers:
+    external: 
+      name: backend-servers
+services:  
+  peer_server:
+    container_name: peer_server
+    build: .
+    environment:
+      - PORT=3001
+      - PEER_SERVER_KEY=z0oMed_pEer
+    ports:
+      - 3001:3001
+    networks:
+      - backend-servers
+    command: >
+      bash -c "yarn install
+      && yarn start"
